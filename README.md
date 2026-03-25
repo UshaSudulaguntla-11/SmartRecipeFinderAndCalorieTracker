@@ -207,11 +207,4 @@ This project is open-source and available under the MIT License.
 
 ---
 
-## 💬 Author
-
-**Usha Chowdary**
-Frontend Developer | Student
-
----
-
 ⭐ If you like this project, give it a star on GitHub!

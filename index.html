@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRecipe | Cook Smart. Eat Smart.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════ SPLASH SCREEN ═══════ -->
+<div id="splash">
+    <video id="splashVideo" autoplay muted playsinline loop>
+        <source src="splash.mp4" type="video/mp4">
+    </video>
+    <div class="splash-overlay"></div>
+
+    <!-- floating particles -->
+    <div class="splash-dots" id="splashDots"></div>
+
+    <div class="splash-content">
+        <!-- Pan icon -->
+        <span class="splash-pan">🍳</span>
+
+        <!-- Title: letters typed one by one -->
+        <div class="splash-title-wrap">
+            <div class="splash-word word1" id="splashWord1"><!-- S,m,a,r,t injected by JS --></div>
+            <div class="splash-word word2" id="splashWord2"><!-- R,e,c,i,p,e injected by JS --></div>
+        </div>
+
+        <!-- Quote / tagline -->
+        <div class="splash-quote" id="splashQuote">
+            "Great meals begin with great ingredients — and a little inspiration."
+        </div>
+
+        <!-- Divider line -->
+        <div class="splash-line" id="splashLine"></div>
+
+        <!-- Enter button -->
+        <button class="splash-enter" id="splashEnter">
+            <span>Enter the Kitchen</span>
+            <svg class="enter-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+    </div>
+</div>
+
+<!-- ═══════ FLOATING BACKGROUND ═══════ -->
+<div class="float-bg" aria-hidden="true">
+    <span class="fi">🌶️</span><span class="fi">🍋</span><span class="fi">🥬</span>
+    <span class="fi">🧅</span><span class="fi">🍅</span><span class="fi">🧄</span>
+    <span class="fi">🥥</span><span class="fi">🫚</span><span class="fi">🌿</span>
+    <span class="fi">🥕</span>
+</div>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="navbar" id="navbar">
+    <div class="nav-c">
+        <a href="#hero" class="nav-logo">
+            <span>🍳</span>
+            <span>Smart<span class="logo-acc">Recipe</span></span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#hero" class="nl">Home</a>
+            <a href="#search-sec" class="nl">Search</a>
+            <a href="#cuisine-sec" class="nl">Cuisines</a>
+            <a href="#trend-sec" class="nl">Trending</a>
+            <a href="#diet-sec" class="nl">Diet Plan</a>
+            <button class="nav-icon-btn" id="favBtn">❤️ Favorites (<span id="favCount">0</span>)</button>
+            <button class="nav-icon-btn" id="trackerBtn">📊 Tracker</button>
+            <button class="nav-icon-btn" id="themeBtn">☀️</button>
+        </div>
+        <button class="mob-btn" id="mobBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="hero">
+    <div class="hero-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+    <div class="hero-inner">
+        <span class="hero-badge">🍳 Smart Recipe Discovery</span>
+        <h1 class="hero-title">Cook Smart.<br><span class="gt">Eat Smart.</span></h1>
+        <p class="hero-sub"><span id="twText"></span><span class="tw-cursor">|</span></p>
+        <a href="#search-sec" class="hero-cta">
+            Start Cooking
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- ═══════ CUISINE ═══════ -->
+<section class="section" id="cuisine-sec">
+    <div class="sec-head">
+        <h2 class="sec-title">Explore <span class="gt">Cuisines</span></h2>
+        <p class="sec-sub">Pick a cuisine and discover authentic recipes from around the world</p>
+    </div>
+    <div class="cuisine-grid">
+        <div class="cuis-card" data-c="indian"><span class="cuis-emoji">🇮🇳</span><span class="cuis-name">Indian</span></div>
+        <div class="cuis-card" data-c="italian"><span class="cuis-emoji">🇮🇹</span><span class="cuis-name">Italian</span></div>
+        <div class="cuis-card" data-c="mexican"><span class="cuis-emoji">🇲🇽</span><span class="cuis-name">Mexican</span></div>
+        <div class="cuis-card" data-c="japanese"><span class="cuis-emoji">🇯🇵</span><span class="cuis-name">Japanese</span></div>
+        <div class="cuis-card" data-c="chinese"><span class="cuis-emoji">🇨🇳</span><span class="cuis-name">Chinese</span></div>
+        <div class="cuis-card" data-c="thai"><span class="cuis-emoji">🇹🇭</span><span class="cuis-name">Thai</span></div>
+        <div class="cuis-card" data-c="mediterranean"><span class="cuis-emoji">🌿</span><span class="cuis-name">Mediterranean</span></div>
+        <div class="cuis-card" data-c="american"><span class="cuis-emoji">🇺🇸</span><span class="cuis-name">American</span></div>
+    </div>
+</section>
+
+<!-- ═══════ TRENDING ═══════ -->
+<section class="section" id="trend-sec">
+    <div class="sec-head">
+        <h2 class="sec-title">🔥 <span class="gt">Trending</span> Recipes</h2>
+        <p class="sec-sub">Popular dishes everyone's cooking right now</p>
+    </div>
+    <div class="r-grid" id="trendGrid">
+        <div class="loader-box"><div class="spin"></div><p>Loading trending recipes…</p></div>
+    </div>
+</section>
+
+<!-- ═══════ SEARCH ═══════ -->
+<section class="section" id="search-sec">
+    <div class="sec-head">
+        <h2 class="sec-title">Find Your <span class="gt">Perfect Recipe</span></h2>
+        <p class="sec-sub">Search by dish name or ingredients — we'll find the best recipes for you</p>
+    </div>
+    <div class="search-wrap">
+        <div class="s-box">
+            <svg class="s-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" class="s-input" id="searchInput" placeholder="e.g. chicken biryani, pasta, chocolate cake…" autocomplete="off">
+        </div>
+        <div class="s-row">
+            <select class="s-sel" id="mealSel">
+                <option value="">All Types</option>
+                <option value="breakfast">🌅 Breakfast</option>
+                <option value="lunch">☀️ Lunch</option>
+                <option value="dinner">🌙 Dinner</option>
+                <option value="snack">🍿 Snack</option>
+                <option value="dessert">🍰 Dessert</option>
+                <option value="drink">🥤 Drink</option>
+            </select>
+            <button class="s-btn" id="searchBtn">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Search Recipes
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ RESULTS ═══════ -->
+<section class="section" id="results-sec" style="padding-top:0;">
+    <div class="r-grid" id="recipeGrid"></div>
+</section>
+
+<!-- ═══════ DIET PLAN ═══════ -->
+<section class="section" id="diet-sec">
+    <div class="sec-head">
+        <h2 class="sec-title">Your <span class="gt">Diet Plan</span></h2>
+        <p class="sec-sub">Choose a goal and get daily meal recommendations</p>
+    </div>
+    <div class="diet-tabs" id="dietTabs">
+        <button class="d-tab active" data-plan="weightloss" data-query="salad">
+            <span class="d-icon">🔥</span><span class="d-lbl">Weight Loss</span><span class="d-cal">~1500 kcal/day</span>
+        </button>
+        <button class="d-tab" data-plan="musclegain" data-query="chicken">
+            <span class="d-icon">💪</span><span class="d-lbl">Muscle Gain</span><span class="d-cal">~2500 kcal/day</span>
+        </button>
+        <button class="d-tab" data-plan="balanced" data-query="vegetable">
+            <span class="d-icon">⚖️</span><span class="d-lbl">Balanced</span><span class="d-cal">~2000 kcal/day</span>
+        </button>
+    </div>
+    <div class="r-grid" id="dietGrid">
+        <div class="loader-box"><div class="spin"></div><p>Loading diet recipes…</p></div>
+    </div>
+</section>
+
+<!-- ═══════ FAVORITES ═══════ -->
+<section class="section" id="fav-sec">
+    <div class="sec-head">
+        <h2 class="sec-title">Your <span class="gt">Favorites</span> ❤️</h2>
+        <p class="sec-sub">Recipes you've saved for later</p>
+    </div>
+    <div class="r-grid" id="favGrid">
+        <div class="fav-empty">
+            <span class="ico">🤍</span>
+            <p>No favorites yet — tap 🤍 on any recipe to save it here!</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="modal-bg" id="modalBg">
+    <div class="modal-box">
+        <button class="modal-close-btn" id="modalClose">✕</button>
+        <div class="modal-scroll" id="modalScroll">
+            <div class="m-load"><div class="spin"></div><p>Loading recipe…</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ CALORIE TRACKER ═══════ -->
+<aside class="tracker" id="tracker">
+    <div class="t-hdr">
+        <div class="t-title">🔥 Daily Tracker</div>
+        <button class="t-close" id="trackerClose">✕</button>
+    </div>
+
+    <div class="t-card">
+        <span class="t-lbl">Daily Calorie Goal</span>
+        <input type="number" class="t-inp" id="goalInp" placeholder="e.g. 2000">
+        <button class="t-set-btn" id="setGoalBtn">Set Goal</button>
+    </div>
+
+    <div class="ring-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute">
+            <defs>
+                <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7C6AFF"/>
+                    <stop offset="100%" stop-color="#00D4FF"/>
+                </linearGradient>
+            </defs>
+        </svg>
+        <div class="ring-svg-wrap">
+            <svg width="150" height="150" viewBox="0 0 150 150">
+                <circle class="ring-bg" cx="75" cy="75" r="68"/>
+                <circle class="ring-fill" id="ringFill" cx="75" cy="75" r="68"/>
+            </svg>
+            <div class="ring-txt">
+                <span class="ring-val" id="ringVal">0</span>
+                <span class="ring-lbl">kcal eaten</span>
+            </div>
+        </div>
+        <div class="prog-row">
+            <span>Today's Intake</span>
+            <span id="progVals">0 / 2000 kcal</span>
+        </div>
+        <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+        <div class="prog-pct" id="progPct">0%</div>
+    </div>
+
+    <div class="t-card">
+        <span class="t-lbl">Macro Breakdown</span>
+        <div class="mac-row">
+            <div class="mac-hd"><div class="mac-dot" style="background:#FFCC33"></div><span class="mac-name">Protein</span><span class="mac-val" id="macP">0g</span></div>
+            <div class="mac-track"><div class="mac-fill" id="macPB" style="background:#FFCC33;"></div></div>
+        </div>
+        <div class="mac-row">
+            <div class="mac-hd"><div class="mac-dot" style="background:#00D4FF"></div><span class="mac-name">Carbs</span><span class="mac-val" id="macC">0g</span></div>
+            <div class="mac-track"><div class="mac-fill" id="macCB" style="background:#00D4FF;"></div></div>
+        </div>
+        <div class="mac-row">
+            <div class="mac-hd"><div class="mac-dot" style="background:#FF4B6A"></div><span class="mac-name">Fat</span><span class="mac-val" id="macF">0g</span></div>
+            <div class="mac-track"><div class="mac-fill" id="macFB" style="background:#FF4B6A;"></div></div>
+        </div>
+    </div>
+
+    <div class="t-card">
+        <span class="t-lbl">Add Calories Manually</span>
+        <div class="t-add-row">
+            <input type="number" class="t-inp" id="manualInp" placeholder="Enter kcal…" style="flex:1;">
+            <button class="t-add-btn" id="manualAddBtn">+</button>
+        </div>
+    </div>
+
+    <div class="t-card">
+        <span class="t-lbl">Today's Log</span>
+        <div class="log-list" id="logList">
+            <p class="log-empty">No entries yet today.</p>
+        </div>
+    </div>
+
+    <button class="t-suggest" id="suggestBtn">💡 Suggest Meals for Remaining Calories</button>
+    <button class="t-reset" id="resetBtn">↺ Reset Today's Data</button>
+</aside>
+
+<!-- ═══════ TOAST CONTAINER ═══════ -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ═══════ FAB ═══════ -->
+<button class="fab" id="fab" title="Quick Add Calories" aria-label="Quick add calories">+</button>
+
+<!-- ═══════ SCROLL TOP ═══════ -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+    <div class="foot-grid">
+        <div>
+            <div class="nav-logo">🍳 Smart<span class="logo-acc">Recipe</span></div>
+            <p class="foot-brand">Discover incredible recipes from around the world, track your nutrition, and cook like a pro — all in one beautiful app.</p>
+        </div>
+        <div>
+            <h4 class="foot-h">Quick Links</h4>
+            <ul class="foot-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#search-sec">Search</a></li>
+                <li><a href="#cuisine-sec">Cuisines</a></li>
+                <li><a href="#diet-sec">Diet Plan</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="foot-h">Cuisines</h4>
+            <ul class="foot-links">
+                <li><a href="#cuisine-sec">Italian</a></li>
+                <li><a href="#cuisine-sec">Indian</a></li>
+                <li><a href="#cuisine-sec">Mexican</a></li>
+                <li><a href="#cuisine-sec">Japanese</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="foot-h">Connect</h4>
+            <div class="foot-social">
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="Instagram">📸</a>
+                <a href="#" aria-label="YouTube">▶️</a>
+                <a href="#" aria-label="GitHub">💻</a>
+            </div>
+        </div>
+    </div>
+    <div class="foot-bottom">
+        <span>© 2026 SmartRecipe — Powered by <a href="https://www.themealdb.com" target="_blank">TheMealDB</a></span>
+        <span>Made with ❤️</span>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
